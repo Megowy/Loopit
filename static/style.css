@@ -1,0 +1,52 @@
+
+.player {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.input-group {
+    display: flex;
+    margin: 5px;
+    justify-content: left;
+}
+
+.input-group-prepend {
+    width: 100%;
+    margin: 5px;
+    display: flex;
+    justify-content: left;
+}
+
+.start {
+    width: 35%;
+}
+
+.stop {
+    width: 35%;
+}
+
+.s_button {
+    width: 15%;
+    display: flex;
+    justify-content: end;
+}
+
+div {
+    margin: 5px
+}
+
+.input {
+    width: 100%;
+    margin: 5px;
+    display: flex;
+    justify-content: left;
+}
+
+.s_list {
+    width: 80%;
+}
+
+.s_button {
+    width: 20%;
+}
