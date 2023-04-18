@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+
+
+{% block content %}
+    <h2> SONGS </h2>
+    <div class="jumbotron">
+        <ul>
+            {% for song in object_list %}
+                {% if temp1 == temp2 %}
+                    <section>
+
+                        <div class="input">
+                            <div class="s_list">
+                                <a href="{% url 'looper' pk=song.id %}">
+                                    {{ song.band }} - {{ song.song_title }} - ({{ song.description }})
+                                </a>
+                            </div>
+                            <div class="s_button">
+                                <a class="btn btn-primary btn-sm" href="{% url 'update_song' pk=song.id %}"
+                                   role="button">Update
+                                </a>
+                            </div>
+                             <div class="s_button">
+                                <a class="btn btn-primary btn-sm" href="{% url 'delete_song' pk=song.id %}"
+                                   role="button">Delete
+                                </a>
+                            </div>
+                        </div>
+
+                    </section>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

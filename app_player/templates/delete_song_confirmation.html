@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+
+
+{% block content %}
+
+    <form method="post">{% csrf_token %}
+        <p>Are you sure you want to delete "{{ object }}"?</p>
+        <input type="submit" value="Confirm">
+        <div class="s_button">
+            <a class="btn btn-primary btn-sm"
+                href="{% url 'songs_list' %}"
+                role="button"> Cancel
+            </a>
+        </div>
+
+    </form>
+
+
+{% endblock %}

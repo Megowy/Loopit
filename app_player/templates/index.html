@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+{% block content %}
+
+    <main>
+        <div class="box">
+            <div class="search">
+                <form action = {% url 'yt_search' %} method="get">
+                    <input name=yt type="text" id="search">
+                    <input type="submit" value="Search" id="send">
+                </form>
+            </div>
+            {#        <section class="player_space">#}
+            {#          <div class="player_box">#}
+            {#            <div class="plyr__video-embed" id="player">#}
+            {#              <iframe src="https://www.youtube.com/embed/bTqVqk7FSmY?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1" allowfullscreen allowtransparency allow="autoplay"></iframe>#}
+            {#              <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>#}
+            {#            </div>#}
+            {##}
+            {##}
+            {#          </div>#}
+            {#        </section>#}
+
+        </div>
+
+
+    </main>
+    <div class="footer_span">
+        <footer>
+            <div class="footer_nav">
+                <div class="footer_navigation">
+                    <a href="#">
+                        Home
+                    </a>
+                    <a href="#">
+                        Privacy
+                    </a>
+                    <a href="#">
+                        Terms
+                    </a>
+                    <a href="#">
+                        Contact
+                    </a>
+                </div>
+                <div class="Copyright">
+                    © Copyright 2023
+                </div>
+            </div>
+
+        </footer>
+
+    </div>
+
+{% endblock %}

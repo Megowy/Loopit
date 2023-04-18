@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="player" id="player"></div>
+        <form method="post">
+        {% csrf_token %}
+            <script>
+                var tag = document.createElement('script');
+
+                tag.src = "https://www.youtube.com/iframe_api";
+                var firstScriptTag = document.getElementsByTagName('script')[0];
+                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+
+
+
+
+                function onYouTubeIframeAPIReady() {
+
+                    player = new YT.Player('player', {
+                        height: '360',
+                        width: '640',
+                        playerVars: {'autoplay': 1, 'loop': 1},
+                        //videoId: 'JIl3V9SdNKY',
+                        events: {
+                            'onReady': onPlayerReady,
+                            'onStateChange': onPlayerStateChange
+                        },
+
+
+                    });
+                }
+
+                function onPlayerReady(event) {
+                    event.target.loadVideoById({
+                        'videoId': '{{ part.song_id }}',
+                        'startSeconds': {{ part.start_p }},
+                        'endSeconds': {{ part.stop_p }},
+                        'suggestedQuality': 'small',
+                    });
+                }
+
+                function onPlayerStateChange(event) {
+                    if (event.data == YT.PlayerState.ENDED) {
+                        event.target.loadVideoById({
+                            'videoId': '{{part.song_id}}',
+                            'startSeconds': {{ part.start_p }},
+                            'endSeconds': {{ part.stop_p }},
+                            'suggestedQuality': 'small',
+                        });
+                    }
+                }
+            </script>
+
+        <p>Start: {{ part.start_p }} - Stop: {{ part.stop_p }}</p>
+         <br><br>
+
+            <div class="input-group">
+
+            {{ form.non_field_errors }}
+                <div class="input-group-prepend">
+                    {{ form.part.start_p.errors }}
+                    <span class="input-group-text" for="{{ part.start_p.id_for_label }}">START:</span>
+                    {{ part.start_p }}
+                </div>
+                <div class="input-group-prepend">
+                    {{ form.part.stop_p.errors }}
+                    <span class="input-group-text" for="{{ part.stop_p.id_for_label }}">STOP:</span>
+                    {{ part.stop_p }}
+                </div>
+                <div>
+                    <input type="submit" value="Submit" class="btn btn-primary">
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+{% endblock %}

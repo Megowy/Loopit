@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+{% block content %}
+
+
+
+    <br><br>
+    <div class="player" id="player"></div>
+    <script>
+        tag = document.createElement('script');
+
+        tag.src = "https://www.youtube.com/iframe_api";
+        firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '360',
+                width: '640',
+                playerVars: {'autoplay': 0, 'loop': 1},
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                },
+            });
+        }
+
+        function onPlayerReady(event) {
+            event.target.loadVideoById({
+                'videoId': '{{ video_url }}',
+                'startSeconds': '{{ start_video }}',
+                'endSeconds': '{{ stop_video }}',
+                'suggestedQuality': 'small',
+            });
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+                event.target.loadVideoById({
+                    'videoId': '{{video_url}}',
+                    'startSeconds': '{{ start_video }}',
+                    'endSeconds': '{{ stop_video }}',
+                    'suggestedQuality': 'small',
+                });
+            }
+        }
+
+
+    </script>
+    <form action="" method="POST">
+    {% csrf_token %}
+            <br><br>
+            <label for="start_value"> START:</label>
+            <input id="start_value" type="number" name="start_value" value={{ start_video }} min=0 max={{ stop_video }} >
+            <label for="stop_value"> STOP:</label>
+            <input id="stop_value" type="number" name="stop_value"   value={{ stop_video }} min={{ start_video }} max={{ length }}  >
+            <input type="submit" value="Change">
+
+    </form>
+{% endblock %}
+
+
