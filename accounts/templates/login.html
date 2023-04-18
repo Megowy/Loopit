@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'login.css' %}">
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <div class="form-box login">
+        <h2>Login</h2>
+        <form method="post" action="#">
+            {% csrf_token %}
+    <div class="input-box">
+        <span class="icon"><ion-icon name="mail"></ion-icon></span>
+        <input type="text"
+        name="username"
+        autofocus=""
+        autocapitalize="none"
+        autocomplete="username"
+        maxlength="150"
+        required=""
+        id="id_username">
+        <label for="id_username">Username:</label>
+    </div>
+    <div class="input-box">
+        <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+        <input type="password"
+        name="password"
+        autocomplete="current-password"
+        required=""
+        id="id_password">
+        <label for="id_password">Password:</label>
+    </div>
+    <div class="remember-forgot">
+        <label><input type="checkbox">
+        Remember me</label>
+        <a href="#">Forgot Password?</a>
+    </div>
+    <button type="submit" class="btn">Login</button>
+    <div class="login-register">
+        <p>Don't have an account?<a href="{%url 'register' %}"
+        class="register-link"> Register</a></p>
+    </div>
+    </form>
+</div>
+</form>
+</div>
+</div>
+
+
+{% endblock %}
+
+
+
+
+
+{#{% extends "base.html" %}#}
+{#{% block content %}#}
+{##}
+{#<h1>Login</h1>#}
+{##}
+{#<form method="post">#}
+{#    {% csrf_token %}#}
+{#    {{form.as_p}}#}
+{#    <input type="submit" class= "button" value="Sign in" />#}
+{#</form>#}
+{##}
+{##}
+{##}
+{#<p>You don't have an account? <a href="{%url 'register' %}">Create account</a></p>#}
+{##}
+{#{% endblock %}#}
