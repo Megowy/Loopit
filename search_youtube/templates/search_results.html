@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+{% block content %}
+
+    <div class="jumbotron">
+        {#        <form method="post">#}
+
+        {% for object in object_list %}
+
+{#            <form action="" method="post">#}
+{#            <form action="{% url 'looper_basic' video_url=object.video_id title=object.title description=object.description %}" method="post">#}
+            <form action="{% url 'looper_basic' object.video_id  %}" method="post">
+                {% csrf_token %}
+                <div>
+                    <img src="{{ object.video_thumbnail }}" alt=" "
+                         style="width:300px;height:180px;">
+                </div>
+                <div>
+                    {{ object.video_id }}<br>
+                    {{ object.title }}<br>
+                    {{ object.description }}<br>
+                    <button type="submit"> Submit</button>
+                </div>
+{#                <div class="s_button">#}
+{#                    <a class="btn btn-primary btn-sm"#}
+{#                       href="{% url 'looper_basic_2' video=object %}"#}
+{#                       role="button">Loop this song#}
+{#                    </a>#}
+{#                </div>#}
+                <br><br>
+            </form>
+        {% endfor %}
+        {#        </form>#}
+
+    </div>
+
+{% endblock %}
