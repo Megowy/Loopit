@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'form.css' %}">
+
+<form method="post">
+    <div class="input-group">
+        <h1>Add new song</h1>
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
+            <div class="input-group-prepend">
+
+                {{ form.band.errors }}
+                <label>
+                <span class="input-group-text">Band :</span>
+                <input type="text" class="text" name="band" maxlength="30" required="" id="id_band">
+                </label>
+            </div>
+
+            <div class="input-group-prepend">
+                {{ form.song_title.errors }}
+                <label>
+                <span class="input-group-text">Song :</span>
+                <input type="text" class="text" name="song_title" maxlength="30" required="" id="id_song_title">
+                </label>
+            </div>
+
+            <div class="input-group-prepend">
+                {{ form.song_url.errors }}
+                <label>
+                <span class="input-group-text">URL :</span>
+                <input type="text" class="text" name="song_url" maxlength="15" required="" id="id_song_url">
+                </label>
+            </div>
+
+
+            <div class="input-group-prepend-text">
+                {{ form.description.errors }}
+                <label>
+                <span class="input-group-text" >Description :</span>
+                <textarea name="description" class="Description" cols="30" rows="10" id="id_description"></textarea>
+                </label>
+            </div>
+
+            <div>
+                <input type="submit" value="Submit" class="btn-primary">
+            </div>
+    </div>
+</form>
+<div class="box">
+        <div class="search">
+            <form action = {% url 'yt_search' %} method="get">
+                <input name=yt type="text" id="search">
+                <input type="submit" value="Search" id="send">
+            </form>
+        </div>
+    </div>
+{% endblock %}
